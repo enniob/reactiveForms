@@ -7,12 +7,26 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
+  userData = '';
 
   constructor(private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(data => {
-      console.log(data);
+      if (data) {
+        this.userData = data.email;
+        console.log(data);
+      }
+    });
+  }
+
+  logoutUser() {
+    this.afAuth.auth.signOut().then(response => {
+      console.log(response);
+      this.userData = '';
+    })
+    .catch(error => {
+      console.log(error);
     });
   }
 }
