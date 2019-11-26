@@ -1,6 +1,6 @@
 # Angular Reactive Form
 
-[Article Link](https://medium.com/@EnnioBozzetti/angular-reactive-form-862013160784).
+[Article Link](https://dev.to/enniob/how-to-create-a-reactive-form-in-angular-2c1d).
 
 # Install
 

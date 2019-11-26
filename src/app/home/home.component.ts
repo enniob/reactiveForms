@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../login/service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +9,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class HomeComponent implements OnInit {
   userData = '';
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.afAuth.authState.subscribe(data => {
+    this.authService.checkLogin().subscribe(data => {
       if (data) {
         this.userData = data.email;
         console.log(data);
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   logoutUser() {
-    this.afAuth.auth.signOut().then(response => {
+    this.authService.logout().then(response => {
       console.log(response);
       this.userData = '';
     })
