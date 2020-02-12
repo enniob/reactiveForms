@@ -7,7 +7,8 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule)}
 ];
 
 @NgModule({
