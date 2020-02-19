@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { RegistrationService } from './service/registration.service';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -13,12 +15,16 @@ export class RegistrationComponent implements OnInit {
     password: new FormControl('', Validators.compose([Validators.required]))
   });
 
-  constructor() { }
+  constructor(private regService: RegistrationService) { }
 
   ngOnInit(): void {
   }
 
   register(formData: FormGroup) {
-    console.log(formData);
+    if (formData.valid) {
+      this.regService.registerAccount(formData.value.userName, formData.value.password).then(resp => {
+        console.log(resp);
+      });
+    }
   }
 }
