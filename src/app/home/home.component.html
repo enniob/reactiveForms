@@ -1,7 +1,7 @@
-<div *ngIf="userData === ''">
+<div *ngIf="!isLoggedIn">
   Click on login
 </div>
 
-<div *ngIf="userData !== ''">
-  Welcome {{userData}} - <a (click)="logoutUser()">Logout</a>
+<div *ngIf="isLoggedIn">
+  Welcome {{userData}}
 </div>

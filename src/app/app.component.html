@@ -1,8 +1,15 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <button mat-button [routerLink]="['/']">Home</button>
-    <button mat-button [routerLink]="['login']">Login</button>
-    <button mat-button [routerLink]="['register']">Register</button>
+
+    <ng-container *ngIf="!isLogedIn">
+      <button mat-button [routerLink]="['login']">Login</button>
+      <button mat-button [routerLink]="['register']">Register</button>
+    </ng-container>
+
+    <ng-container *ngIf="isLogedIn">
+      <button mat-button (click)="logoutUser()">Logout</button>
+    </ng-container>
   </mat-toolbar-row>
 </mat-toolbar>
 

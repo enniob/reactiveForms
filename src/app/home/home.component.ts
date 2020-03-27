@@ -7,7 +7,8 @@ import { AuthService } from '../login/service/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  userData = '';
+  isLoggedIn = false;
+  userData: {} = {};
 
   constructor(private authService: AuthService) { }
 
@@ -15,18 +16,9 @@ export class HomeComponent implements OnInit {
     this.authService.checkLogin().subscribe(data => {
       if (data) {
         this.userData = data.email;
+        this.isLoggedIn = true;
         console.log(data);
       }
-    });
-  }
-
-  logoutUser() {
-    this.authService.logout().then(response => {
-      console.log(response);
-      this.userData = '';
-    })
-    .catch(error => {
-      console.log(error);
     });
   }
 }
